@@ -8,16 +8,18 @@
 <h2>Policy Holders</h2>
                                 
 <div align="right">
-    <table>
-        <tr>
-            @using (Html.BeginForm())
-            {                
-                <td>Find by Policy Number: </td>
-                <td>@Html.TextBox("SearchString")</td>
-                <td><input type="submit" value="Search" class="btn btn-primary"></td>
-            }
-        </tr>
-    </table>
+
+    <p>
+        @using (Html.BeginForm("Index", "NewMembers", System.Web.Mvc.FormMethod.Get))
+        {
+            <b>Search By:</b>  @Html.RadioButton("SearchBy", "policyNo", true)<text>policyNo</text>
+            @Html.RadioButton("SearchBy", "IdNo")<text>IdNo</text>
+            @Html.RadioButton("SearchBy", "lName")<text>lName</text><br />
+
+            @Html.TextBox("search")<input type="submit" value="Search" />
+        }
+    </p>
+
 </div>
 
 <p>

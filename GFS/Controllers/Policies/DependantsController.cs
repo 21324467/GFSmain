@@ -16,12 +16,24 @@ namespace GFS.Controllers.Policies
         private GFSContext db = new GFSContext();
 
         // GET: Dependants
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            var dependants = db.Dependants.Include(b => b.NewMembers);
-            return View(dependants.ToList());
-        }
+            if (searchBy == "policyNo")
+            {
+                return View(db.Dependants.Where(x => x.policyNo == search || search == null).ToList());
+            }
+            else
+               if (searchBy == "fName")
+            {
+                return View(db.Dependants.Where(x => x.fName == search || search == null).ToList());
 
+            }
+            else
+            {
+                return View(db.Dependants.Where(x => x.coveredby == search || search == null).ToList());
+            }
+        }
+       
         // GET: Dependants/Details/5
         public ActionResult Details(int? id)
         {

@@ -16,27 +16,22 @@ namespace GFS.Controllers.Policies
         private GFSContext db = new GFSContext();
 
         // GET: NewMembers
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchBy, string search)
         {
-            var newmembers = from m in db.NewMembers
-                             select m;
-
-            if (!String.IsNullOrEmpty(searchString))
+            if (searchBy == "policyNo")
             {
-                newmembers = newmembers.Where(s => s.policyNo.Contains(searchString));
-
-                NewMember d = db.NewMembers.ToList().Find(r => r.policyNo == searchString);
-
-                Session["First Name"] = d.fName;
-                Session["Last Name"] = d.lName;
-                Session["ID Number"] = d.IdNo;
-                Session["Age"] = d.age;
-                Session["Gender"] = d.gender;
-                Session["PolicyNo"] = d.policyNo;
-
-                RedirectToAction("Create", "Deceaseds");
+                return View(db.NewMembers.Where(x => x.policyNo == search || search == null).ToList());
             }
-            return View(newmembers);
+            else
+                if (searchBy == "IdNo")
+            {
+                return View(db.NewMembers.Where(x => x.IdNo == search || search == null).ToList());
+
+            }
+            else
+            {
+                return View(db.NewMembers.Where(x => x.lName == search || search == null).ToList());
+            }
 
         }
         //[HttpPost]

@@ -6,6 +6,19 @@
 }
 
 <h2>Policy Plans</h2>
+<div align="right">
+
+    <p>
+        @using (Html.BeginForm("Index", "PolicyPlans", System.Web.Mvc.FormMethod.Get))
+        {
+            <b>Search By:</b>  @Html.RadioButton("SearchBy", "category", true)<text>category</text>
+            @Html.RadioButton("SearchBy", "policyType")<text>policyType</text><br />
+
+            @Html.TextBox("search")<input type="submit" value="Search" />
+        }
+    </p>
+
+</div>
 
 <div>
     <input type="button" value="Add New Plan" class="btn btn-success" onclick="@("window.location.href='" + @Url.Action("Create", "PolicyPlans") + "'");" />

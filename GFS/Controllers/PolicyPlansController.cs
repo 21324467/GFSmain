@@ -15,9 +15,16 @@ namespace GFS.Controllers
         private GFSContext db = new GFSContext();
 
         // GET: PolicyPlans
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            return View(db.PolicyPlans.ToList());
+            if (searchBy == "category")
+            {
+                return View(db.PolicyPlans.Where(x => x.category == search || search == null).ToList());
+            }
+            else
+            {
+                return View(db.PolicyPlans.Where(x => x.policyType == search || search == null).ToList());
+            }
         }
 
         // GET: PolicyPlans/Details/5

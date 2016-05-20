@@ -6,6 +6,20 @@
 }
 
 <h2>Dependants</h2>
+<div align="right">
+
+    <p>
+        @using (Html.BeginForm("Index", "Dependants", System.Web.Mvc.FormMethod.Get))
+        {
+            <b>Search By:</b>  @Html.RadioButton("SearchBy", "policyNo", true)<text>policyNo</text>
+            @Html.RadioButton("SearchBy", "coveredby")<text>coveredby</text>
+            @Html.RadioButton("SearchBy", "fName")<text>fName</text><br />
+
+            @Html.TextBox("search")<input type="submit" value="Search" />
+        }
+    </p>
+
+</div>
 
 <table class="table table-bordered table-responsive">
     <tr>

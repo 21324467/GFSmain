@@ -7,17 +7,20 @@
 
 <h2><u>Inventory</u></h2>
 <div align="right">
-    <table>
-        <tr>
-            @using (Html.BeginForm())
-            {
-                <td>Find by Stock Code: </td>
-                <td>@Html.TextBox("SearchString")</td>
-                <td><input type="submit" value="Search" class="btn btn-primary"></td>
-            }
-        </tr>
-    </table>
+
+    <p>
+        @using (Html.BeginForm("Index", "StockFiles", System.Web.Mvc.FormMethod.Get))
+        {
+            <b>Search By:</b>  @Html.RadioButton("SearchBy", "stockCode", true)<text>stockCode</text>
+            @Html.RadioButton("SearchBy", "category")<text>category</text>
+            @Html.RadioButton("SearchBy", "status")<text>status</text><br />
+
+                    @Html.TextBox("search")<input type="submit" value="Search" />
+        }
+    </p>
+
 </div>
+
 
 <p>
     @Html.ActionLink("Add To Stock", "Create")
